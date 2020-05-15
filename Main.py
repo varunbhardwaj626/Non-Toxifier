@@ -13,6 +13,7 @@ import numpy as np
 import pandas as pd
 import json
 import threading
+import PySimpleGUI as sg
 from keras.preprocessing import text, sequence
 
 def load_emojis():
