@@ -25,5 +25,6 @@ Thanks for installing and trying our project !!!
 
 Datasets:
 1.Comment Dataset- https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge.
+
 2.Emoji Dataset- https://www.kaggle.com/rtatman/emojinet
 
