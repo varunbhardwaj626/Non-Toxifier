@@ -1,4 +1,8 @@
 # Non-Toxifier
+
+
+![Output Image ](https://github.com/varunbhardwaj626/Non-Toxifier/blob/master/Output1.png)
+
 ***********************************************    INSTALLATION GUIDE    **************************************************************
 
 1) Download Project Files from here - https://github.com/varunbhardwaj626/Non-Toxifier/blob/master/emojis.json 
