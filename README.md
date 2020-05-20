@@ -1,7 +1,7 @@
 # Non-Toxifier
 
 
-![Output Image ](https://github.com/varunbhardwaj626/Non-Toxifier/blob/master/Output1.png)
+                  ![Output Image ](https://github.com/varunbhardwaj626/Non-Toxifier/blob/master/Output1.png)
 
 ***********************************************    INSTALLATION GUIDE    **************************************************************
 
