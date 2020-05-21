@@ -113,7 +113,7 @@ def check(s):
     x_test_ex = t.texts_to_sequences([test_example])
     x_test_ex =sequence.pad_sequences(x_test_ex, maxlen=200, padding='post')
     pred=m.predict(x_test_ex)
-    if pred[0][0]>0.4:
+    if np.amax(pred)>0.4:
         return True
     else:
         return False
