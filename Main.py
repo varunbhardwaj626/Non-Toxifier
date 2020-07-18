@@ -12,7 +12,6 @@
 import numpy as np
 import pandas as pd
 import json
-import threading
 import PySimpleGUI as sg
 from keras.preprocessing import text, sequence
 
@@ -28,7 +27,7 @@ emojis = load_emojis()
 with open('metadata.json', 'r') as fp:
     data = json.load(fp)
 
-max_len=200
+max_len=80
 num_words=data['vocabulary_size']
 from keras.preprocessing.text import Tokenizer
 
@@ -38,7 +37,7 @@ t.word_index=data['word_index']
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 import tensorflow as tf 
-m = tf.keras.models.load_model('glove_model.h5')
+m = tf.keras.models.load_model('learned_embedding32.h5')
 
 
 # In[ ]:
@@ -109,10 +108,10 @@ def query(v):
 
 
 def check(s):
-    test_example = s
-    x_test_ex = t.texts_to_sequences([test_example])
-    x_test_ex =sequence.pad_sequences(x_test_ex, maxlen=200, padding='post')
-    pred=m.predict(x_test_ex)
+    
+    x = t.texts_to_sequences([s])
+    x =sequence.pad_sequences(x, maxlen=max_len)
+    pred=m.predict(x)
     if np.amax(pred)>0.4:
         return True
     else:
@@ -178,7 +177,14 @@ while True:
             for i in toxic:
                 v = nlp(test[i].lower()).vector
                 c=query(v)
-                test[i]=c
+                if c=='':
+                    star=''
+                    for _ in range(len(test[i])):
+                        star+='*'
+                    test[i]=star
+                else:
+                    
+                    test[i]=c
                 
             
             window['output'].update(' '.join(test))
@@ -194,8 +200,9 @@ while True:
             continue
      
         x_test_ex = t.texts_to_sequences([values['input']])
-        test = pad_sequences(x_test_ex, maxlen=max_len, padding='post')
-        pred=m.predict(test)   
+        test = pad_sequences(x_test_ex, maxlen=max_len)
+        pred=m.predict(test)
+        print(pred)
         progress_bar1.UpdateBar((pred[0][0]*1000))
         progress_bar2.UpdateBar((pred[0][1]*1000))
         progress_bar3.UpdateBar((pred[0][2]*1000))
