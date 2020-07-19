@@ -1,12 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[4]:
 
 
 import numpy as np, pandas as pd
-import matplotlib.pyplot as plt
-get_ipython().run_line_magic('matplotlib', 'inline')
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.layers import Dense, Input, LSTM, Embedding, Dropout, Activation
@@ -16,13 +10,11 @@ from keras import optimizers, layers
 
 
 
-# In[5]:
 
 
 train = pd.read_csv('train.csv')
 
 
-# In[6]:
 
 
 list_classes = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]
@@ -30,8 +22,6 @@ y = train[list_classes].values
 list_sentences_train = train["comment_text"]
   
 
-
-# In[7]:
 
 
 max_features = 210340
@@ -41,14 +31,10 @@ list_tokenized_train = tokenizer.texts_to_sequences(list_sentences_train)
 word_index = tokenizer.word_index
 
 
-# In[78]:
-
 
 maxlen = 80
 X_t = pad_sequences(list_tokenized_train, maxlen=maxlen)
 
-
-# In[79]:
 
 
 
@@ -64,7 +50,6 @@ model.add(tf.keras.layers.Flatten())
 model.add(tf.keras.layers.Dense(6, activation="sigmoid"))
 model.compile('adam', 'binary_crossentropy', metrics=['accuracy'])
 model.summary()
-# In[84]:
 
 
 batch_size = 128
@@ -72,26 +57,20 @@ epochs = 2
 model.fit(X_t,y, batch_size=batch_size, epochs=epochs, validation_split=0.2)
 
 
-# In[91]:
 
-
-
-
-
-# In[ ]:
 
 
 model.save('learned_embedding32.h5')
 
 
 
-# In[86]:
 
 
 
 
 
-# In[36]:
+
+
 
 
 metadata = {
@@ -101,7 +80,7 @@ metadata = {
 }
 
 
-# In[37]:
+
 
 
 import json

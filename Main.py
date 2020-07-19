@@ -30,7 +30,6 @@ import tensorflow as tf
 m = tf.keras.models.load_model('learned_embedding32.h5')
 
 
-# In[ ]:
 
 
 
@@ -48,7 +47,7 @@ def load_emojis():
 emojis = load_emojis()
 
 
-# In[ ]:
+
 
 
 
@@ -63,14 +62,13 @@ with open('glove.6B.100d.txt', 'r',encoding='utf-8') as f:
         nlp.vocab.set_vector(word, vec)
 
 
-# In[ ]:
 
 
 docs = [nlp(str(keywords)) for _, _, keywords in tqdm(emojis)]
 doc_vectors = np.array([doc.vector for doc in docs])
 
 
-# In[ ]:
+
 
 
 from numpy import dot
@@ -94,7 +92,7 @@ def query(v):
     
 
 
-# In[ ]:
+
 from nltk.stem import PorterStemmer 
 
 ps = PorterStemmer()
@@ -111,7 +109,7 @@ def check(s):
 
 
 
-# In[ ]:
+
 
 
 
