@@ -34,8 +34,8 @@ list_sentences_train = train["comment_text"]
 # In[7]:
 
 
-max_features = 210338
-tokenizer = Tokenizer(num_words=max_features,  filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n', lower=True, split=' ')
+max_features = 210340
+tokenizer = Tokenizer(num_words=max_features,  filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n',oov_token='<OOV>' ,lower=True, split=' ')
 tokenizer.fit_on_texts(list(list_sentences_train))
 list_tokenized_train = tokenizer.texts_to_sequences(list_sentences_train)
 word_index = tokenizer.word_index

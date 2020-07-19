@@ -1,13 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-
-# In[ ]:
-
-
 
 import numpy as np
 import pandas as pd
@@ -105,11 +95,13 @@ def query(v):
 
 
 # In[ ]:
-
-
+from nltk.stem import PorterStemmer 
+from nltk.tokenize import word_tokenize 
+ps = PorterStemmer()
 def check(s):
     
-    x = t.texts_to_sequences([s])
+    y=ps.stem(s)
+    x = t.texts_to_sequences([y])
     x =sequence.pad_sequences(x, maxlen=max_len)
     pred=m.predict(x)
     if np.amax(pred)>0.4:
@@ -200,8 +192,13 @@ while True:
             progress_bar5.UpdateBar(0)
             progress_bar6.UpdateBar(0)
             continue
-     
-        x_test_ex = t.texts_to_sequences([values['input']])
+        
+        msg=values['input'].split()
+        s=''
+        for j in msg:
+            s+=ps.stem(j)+' '
+            
+        x_test_ex = t.texts_to_sequences([s])
         test = pad_sequences(x_test_ex, maxlen=max_len)
         pred=m.predict(test)
         
@@ -215,10 +212,4 @@ while True:
         
 
 window.close()
-
-
-# In[ ]:
-
-
-
 
