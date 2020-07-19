@@ -166,7 +166,9 @@ while True:
         break
     else:
         if event=='convert':
-            
+            if np.amax(pred)<=0.4:
+                window['output'].update(values['input'])
+                continue
             test=values['input'].lower().split()
             toxic=[]
             for i in range(len(test)):
@@ -202,7 +204,7 @@ while True:
         x_test_ex = t.texts_to_sequences([values['input']])
         test = pad_sequences(x_test_ex, maxlen=max_len)
         pred=m.predict(test)
-        print(pred)
+        
         progress_bar1.UpdateBar((pred[0][0]*1000))
         progress_bar2.UpdateBar((pred[0][1]*1000))
         progress_bar3.UpdateBar((pred[0][2]*1000))
