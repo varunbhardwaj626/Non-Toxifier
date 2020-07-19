@@ -96,7 +96,7 @@ def query(v):
 
 # In[ ]:
 from nltk.stem import PorterStemmer 
-from nltk.tokenize import word_tokenize 
+
 ps = PorterStemmer()
 def check(s):
     
